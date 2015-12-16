@@ -34,9 +34,10 @@ module Brcobranca
       options[:multiplicador] ||= [9, 8, 7, 6, 5, 4, 3, 2]
 
       total = multiplicador(options[:multiplicador])
-      valor = block_given? ? yield(total) : (total % 11)
+      rest = total % 11
+      valor = block_given? ? yield(total) : rest
 
-      options[:mapeamento][valor] || valor
+      options[:mapeamento][rest] || valor
     end
 
     # Verifica se String só contem caracteres numéricos.
